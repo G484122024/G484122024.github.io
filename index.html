@@ -1,162 +1,96 @@
-<!DOCTYPE html>
-<!-- oss-template-2026:placeholder （この目印で，scripts/check.sh が「準備中」のページかどうかを見分けます） -->
-<!--
-  テンプレートの「準備中」のページです．
-  このページが https://ユーザー名.github.io/ に表示されたら，GitHub Pages の設定は成功です．
-  第7回の実習4で，このファイルを第6回で作った index.html に置きかえます．
--->
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>準備中</title>
+  <meta name="description" content="大学で学んでいることと、授業で制作した天気検索サイトを紹介します。">
+  <title>自己紹介と制作物</title>
   <style>
-    /* ===== 色の設定 ===== */
     :root {
-      --main-color: #2e7d32;  /* メインの色（見出し・番号） */
-      --bg-color: #f5f8f5;    /* ページの背景の色 */
-      --card-color: #ffffff;  /* カードの背景の色 */
-      --text-color: #222222;  /* 文字の色 */
-      --sub-color: #666666;   /* 補足の文字の色 */
-      --line-color: #dfe6df;  /* 区切り線の色 */
+      color-scheme: light;
+      font-family: "BIZ UDPGothic", "Hiragino Sans", "Yu Gothic", sans-serif;
+      color: #18332e;
+      background: #f4f6ee;
+      --accent: #176453;
+      --border: #c8d9cf;
     }
 
-    /* パソコンやスマートフォンがダークモードのときの色 */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --main-color: #81c784;
-        --bg-color: #121512;
-        --card-color: #1e231e;
-        --text-color: #e8ece8;
-        --sub-color: #a0a8a0;
-        --line-color: #2f362f;
-      }
-    }
+    * { box-sizing: border-box; }
 
-    /* ページ全体：カードを画面のまんなかに置く */
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 16px;
-      box-sizing: border-box;
-      font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
-      line-height: 1.8;
-      color: var(--text-color);
-      background: var(--bg-color);
-    }
+    body { margin: 0; }
 
-    /* まんなかのカード */
     main {
-      width: 100%;
-      max-width: 600px;
-      padding: 32px 28px;
-      background: var(--card-color);
-      border-top: 6px solid var(--main-color);
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      width: min(100% - 2.5rem, 48rem);
+      margin-inline: auto;
+      padding-block: clamp(2.5rem, 9vw, 6rem);
     }
+
+    h1, h2, p { margin: 0; }
 
     h1 {
-      margin: 0 0 4px;
-      font-size: clamp(1.3rem, 6vw, 1.6rem);  /* スマートフォンでは少し小さくする */
-      line-height: 1.4;
-      color: var(--main-color);
+      font-size: clamp(2rem, 7vw, 4rem);
+      line-height: 1.22;
+      letter-spacing: -.045em;
     }
 
     h2 {
-      margin: 28px 0 8px;
-      padding-bottom: 4px;
-      font-size: 1.05rem;
-      border-bottom: 1px solid var(--line-color);
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      line-height: 1.45;
     }
 
-    /* 「設定は成功」のバッジ */
-    .badge {
-      display: inline-block;
-      margin: 8px 0 0;
-      padding: 2px 12px;
-      font-size: 0.9rem;
+    p { line-height: 1.9; }
+
+    header {
+      border-top: .35rem solid var(--accent);
+      padding-top: 1.5rem;
+    }
+
+    header p {
+      margin-top: 1.25rem;
+      max-width: 36rem;
+    }
+
+    article {
+      margin-top: clamp(2.5rem, 8vw, 4rem);
+      padding: clamp(1.25rem, 5vw, 2.5rem);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      background: #fff;
+    }
+
+    .section-label {
+      color: var(--accent);
       font-weight: bold;
-      color: var(--card-color);
-      background: var(--main-color);
-      border-radius: 999px;
+      margin-bottom: .5rem;
     }
 
-    /* 「次にやること」の番号つきリスト */
-    ol {
-      margin: 0;
-      padding-left: 1.4em;
-    }
-    li {
-      margin-bottom: 6px;
-    }
-    li::marker {
-      font-weight: bold;
-      color: var(--main-color);
+    article h2 + p { margin-top: .85rem; }
+
+    ul {
+      margin: 1.2rem 0 0;
+      padding: 1rem 0 0 1.3rem;
+      border-top: 1px solid var(--border);
+      line-height: 1.8;
     }
 
-    /* コマンドの見た目 */
-    code {
-      padding: 1px 6px;
-      font-family: "SFMono-Regular", Consolas, monospace;
-      font-size: 0.88em;
-      background: var(--bg-color);
-      border-radius: 4px;
-      white-space: nowrap;  /* コマンドの途中で折り返さない */
-    }
-
-    /* 補足の小さな文字 */
-    .sub {
-      font-size: 0.9rem;
-      color: var(--sub-color);
-    }
-
-    /* いちばん下の小さな文字 */
-    footer {
-      margin-top: 28px;
-      padding-top: 12px;
-      font-size: 0.8rem;
-      color: var(--sub-color);
-      border-top: 1px solid var(--line-color);
-    }
-    a {
-      color: var(--main-color);
-    }
+    li + li { margin-top: .35rem; }
   </style>
 </head>
 <body>
   <main>
-    <h1>このサイトは準備中です</h1>
-    <p class="badge">GitHub Pages の設定 OK</p>
-    <p>このページが表示されていれば，あなたのリポジトリは正しく公開されています．
-      あとは，このページを自分のサイトに置きかえるだけです．</p>
-
-    <h2>次にやること</h2>
-    <ol>
-      <li>このリポジトリを，SSHのURLで <code>git clone</code> する</li>
-      <li><code>index.html</code> を，第6回で作ったサイトに置きかえる</li>
-      <li><code>bash scripts/check.sh</code> で，公開前のチェックをする</li>
-      <li><code>git add</code> → <code>git commit</code> → <code>git push origin main</code> する</li>
-      <li>数分待ってから，このページを再読み込みする</li>
-    </ol>
-    <p class="sub">再読み込みしても変わらないときは，強制再読み込み（Windows：Ctrl + F5，Mac：Command + Shift + R）を試しましょう．</p>
-
-    <h2>公開する前に</h2>
-    <ul>
-      <li>本名のフルネーム・学籍番号・住所・電話番号・メールアドレスが入っていないか</li>
-      <li>自己紹介に書いていないことを，AIが付け足していないか</li>
-    </ul>
-    <p class="sub">このリポジトリは Public です．サイトだけでなく，ファイルの中身やコミットの履歴も，誰でも見ることができます．</p>
-
-    <footer>
-      拓殖大学工学部『オープンソースソフトウェア』2026年度<br>
-      <a href="https://github.com/tomohitoy/oss-practice-2026/blob/main-07/chap07/README.md">第7回の資料</a>
-      ・
-      <a href="https://github.com/tomohitoy/oss-template-2026">テンプレート（tomohitoy/oss-template-2026）</a>
-    </footer>
+    <header>
+      <h1>自己紹介と制作物</h1>
+      <p>大学でソフトウェア工学とWeb制作を学んでいます。使う人が迷わず操作できる画面づくりに関心があります。</p>
+    </header>
+    <article aria-labelledby="weather-project">
+      <p class="section-label">授業での制作</p>
+      <h2 id="weather-project">天気検索サイト</h2>
+      <p>HTML・CSS・JavaScriptで制作しました。都市IDを入力すると、その都市の天気・気温・湿度が表示されます。</p>
+      <ul>
+        <li>東京や北京は、都市IDを知らなくても一覧から選べます。</li>
+        <li>検索し直すと、前の結果が消えて新しい結果が表示されます。</li>
+      </ul>
+    </article>
   </main>
 </body>
 </html>
